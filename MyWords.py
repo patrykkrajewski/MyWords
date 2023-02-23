@@ -9,7 +9,9 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 
-tab_pl = []
+tab_pl = ['pies', 'kot','pies', 'kot','pies', 'kot','pies', 'kot']
+tab_ang = ['dog', 'cat']
+
 class Aplication(Widget):
     def __init__(self, **kwargs):
         super(Aplication, self).__init__(**kwargs)
@@ -105,34 +107,33 @@ class Aplication(Widget):
         tab_pl.append("siema")
         tab_ang.append("hello")
 
-
-
     def nauka(self, instrukcja):
-        tab_pl = ["jeden", "dwa", "trzy"]
-        tab_ang = ["one", "two", "three"]
         self.clear_widgets()
         # -----------------------------Tytuł
+
         self.kol = Label(text="Nauka:", pos=(150, 500), color='#00FFCE', font_size=40)
         self.add_widget(self.kol)
 # -----------------------------Program
         self.inside = GridLayout(cols= 2, pos=(70, 350),size=(300,300))
         self.napis_jeden = Label(text="Przetłumacz słowo: ", bold=True, color="#BA0F2F", font_size= 24)
         self.inside.add_widget(self.napis_jeden)
-        self.napis_dwa = Label(text=tab_pl[0], bold=True, color="#00FFCE")
+        self.napis_dwa = Label(text="temp", bold=True, color="#00FFCE")
         self.inside.add_widget(self.napis_dwa)
         self.add_widget(self.inside)
-
-        self.odp = TextInput(text="Przetłumacz:", font_size=18,background_color='#000000' ,foreground_color='#00FFCE',halign='center', multiline=False, padding_y=(10, 10), size_hint=(0.5, 0.85),pos=(120, 280),size=(150,150))
-        self.add_widget(self.odp)
+        n = 0
+        z = 0
+        self.temp = GridLayout(cols=1, pos=(70, 350), size=(100, 100))
+        self.wyp_dwa(tab_pl, tab_ang)
 
         self.footer = Label(text="", pos=(150, 400), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
 
-        self.button = Button(pos=(77, 320), size=(250, 50), text="Sprawdz!",on_press=self.spr, bold=True, background_color='#BA0F2F', background_normal="", color='#000000')
+        self.button = Button(pos=(77, 190), size=(250, 50), text="Sprawdz!", bold=True,on_press=self.spr(tab_ang,self.word), background_color='#BA0F2F', background_normal="", color='#000000')
+        self.add_widget(self.button)
+# ---------------------Wynik
+        self.button = Button(pos=(77, 130), size=(250, 50), text="Wynik!", bold=True,on_press=self.br,background_color='#BA0F2F', background_normal="", color='#000000')
         self.add_widget(self.button)
 
-        self.but_next = Button(pos=(77, 260), size=(250, 50), text="Następne!",on_press=self.but_next, bold=True, background_color='#BA0F2F', background_normal="", color='#000000')
-        self.add_widget(self.but_next)
 # -----------------------------Footer
         self.button = Button(pos=(77, 70), size=(250, 50), text="Cofnij!", on_press=self.logowanie, bold=True,background_color='#BA0F2F', background_normal="", color='#000000')
         self.add_widget(self.button)
@@ -140,11 +141,7 @@ class Aplication(Widget):
 
         self.footer = Label(text="MyWords 2022", pos=(150, 0), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
-    def but_next(self,rev):
-        pass
-    def spr(self,ger):
-        tab_pl = ["jeden", "dwa", "trzy"]
-        tab_ang = ["one", "two", "three"]
+
 
     def slownik(self, tab_pl):
         self.clear_widgets()
@@ -194,6 +191,24 @@ class Aplication(Widget):
             self.word = Label(text=i, pos=(250, y), bold=True, color="#00FFCE")
             self.add_widget(self.word)
             y = y - 20
+    def wyp_dwa(self, tab_pl, tab_ang):
+        x = 410
+        y = 370
+        d = 1
+        f =1
+        for i in tab_pl:
+            self.word = Label(text=str(d)+"."+i, pos=(50, x), bold=True, color="#00FFCE")
+            self.add_widget(self.word)
+            x = x - 20
+            d +=1
+        for i in tab_ang:
+            self.word = TextInput(text=str(f)+"."+i,pos=(250, y), background_color='#000000', foreground_color='#00FFCE')
+            self.add_widget(self.word)
+            y = y - 20
+            f += 1
+    def spr(self, tab_ang, x):
+        if x.text == tab_ang[0]: print(True)
+        else: return print('vbretv')
     def slownik_dodaj(self,ver):
         a = self.textinput_ang.text
         b = self.textinput_pl.text
