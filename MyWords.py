@@ -1,3 +1,4 @@
+import keyboard as keyboard
 from kivy import Config
 from kivy.app import App
 Config.read('Config.ini')
@@ -8,9 +9,22 @@ from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
+import mysql.connector
 
-tab_pl = ['pies', 'kot','pies', 'kot','pies', 'kot','pies', 'kot']
-tab_ang = ['dog', 'cat']
+mydb = mysql.connector.connect(
+  host="127.0.0.1",
+  user="root",
+  password="",
+  database="próbna"
+)
+tab = []
+mycursor = mydb.cursor()
+mycursor.execute("SELECT * FROM `słowa`")
+myresult = mycursor.fetchall()
+for x in myresult:
+  for i in x:
+    tab.append(i)
+mydb.close()
 
 class Aplication(Widget):
     def __init__(self, **kwargs):
@@ -99,14 +113,6 @@ class Aplication(Widget):
 # --------------------Footer
         self.footer = Label(text="MyWords 2022", pos=(150, 0), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
-    def slowo(self,vrtbe):
-        tab_pl = []
-        tab_ang = []
-        tab_pl.append("siema")
-        tab_ang.append("hello")
-        tab_pl.append("siema")
-        tab_ang.append("hello")
-
     def nauka(self, instrukcja):
         self.clear_widgets()
         # -----------------------------Tytuł
@@ -120,18 +126,16 @@ class Aplication(Widget):
         self.napis_dwa = Label(text="temp", bold=True, color="#00FFCE")
         self.inside.add_widget(self.napis_dwa)
         self.add_widget(self.inside)
-        n = 0
-        z = 0
-        self.temp = GridLayout(cols=1, pos=(70, 350), size=(100, 100))
-        self.wyp_dwa(tab_pl, tab_ang)
+
+        self.wyp_dwa(tab)
 
         self.footer = Label(text="", pos=(150, 400), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
 
-        self.button = Button(pos=(77, 190), size=(250, 50), text="Sprawdz!", bold=True,on_press=self.spr(tab_ang,self.word), background_color='#BA0F2F', background_normal="", color='#000000')
+        self.button = Button(pos=(77, 190), size=(250, 50), text="Sprawdz!",on_press=self.nxt, bold=True, background_color='#BA0F2F', background_normal="", color='#000000')
         self.add_widget(self.button)
 # ---------------------Wynik
-        self.button = Button(pos=(77, 130), size=(250, 50), text="Wynik!", bold=True,on_press=self.br,background_color='#BA0F2F', background_normal="", color='#000000')
+        self.button = Button(pos=(77, 130), size=(250, 50), text="Wynik!", bold=True,background_color='#BA0F2F', background_normal="", color='#000000')
         self.add_widget(self.button)
 
 # -----------------------------Footer
@@ -141,8 +145,12 @@ class Aplication(Widget):
 
         self.footer = Label(text="MyWords 2022", pos=(150, 0), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
-
-
+    def spr(self,tab_ang):
+        tab_ang = ['dog', 'cat','tyb']
+        c = 0
+        tab_pom = []
+        for i in tab_ang:
+            tab_pom.append(i)
     def slownik(self, tab_pl):
         self.clear_widgets()
 
@@ -153,19 +161,11 @@ class Aplication(Widget):
         self.add_widget(self.word)
         self.word = Label(text="Angielski", pos=(250, 460),font_size=18, bold=True, color="#F50B00")
         self.add_widget(self.word)
-        tab_pl = []
-        tab_ang = []
-        tab_pl.append("siema")
-        tab_ang.append("hello")
-        tab_pl.append("siema")
-        tab_ang.append("hello")
 
-        self.wyp(tab_pl, tab_ang)
-
+        self.wyp(tab)
 
         self.inside = GridLayout(cols=3, pos=(25, 140), size=(350, 50))
         self.textinput_pl = TextInput(text="PL", font_size=16, background_color='#000000', foreground_color='#00FFCE',halign='center', multiline=False, padding_y=(10, 10), size_hint=(0.5, 0.85))
-        b = self.textinput_pl.text
         self.inside.add_widget(self.textinput_pl)
         self.textinput_ang = TextInput(text="ANG", font_size=16, background_color='#000000', foreground_color='#00FFCE',halign='center', multiline=False, padding_y=(10, 10), size_hint=(0.5, 0.85))
         self.inside.add_widget(self.textinput_ang)
@@ -180,40 +180,45 @@ class Aplication(Widget):
 
         self.footer = Label(text="MyWords 2022", pos=(150, 0), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
-    def wyp(self, tab_pl, tab_ang):
+    def wyp(self, tab):
+        i=1
         x = 430
-        y = 430
-        for i in tab_pl:
-            self.word = Label(text=i, pos=(50, x), bold=True, color="#00FFCE")
-            self.add_widget(self.word)
-            x = x - 20
-        for i in tab_ang:
-            self.word = Label(text=i, pos=(250, y), bold=True, color="#00FFCE")
-            self.add_widget(self.word)
-            y = y - 20
-    def wyp_dwa(self, tab_pl, tab_ang):
-        x = 410
         y = 370
-        d = 1
-        f =1
-        for i in tab_pl:
-            self.word = Label(text=str(d)+"."+i, pos=(50, x), bold=True, color="#00FFCE")
+        while i <= len(tab):
+            self.ins = Label(text=tab[i], pos=(50, x),color="#00FFCE")
+            self.add_widget(self.ins)
+            self.ins_2 = Label(text=tab[i+1], pos=(250, x), color="#00FFCE")
+            self.add_widget(self.ins_2)
+            i +=3
+            x -= 20
+    def wyp_dwa(self, tab):
+        i = 1
+        x = 420
+        y = 385
+        c = 0
+        while i <= len(tab):
+            word_ang = c
+            self.word = Label(text=tab[i], pos=(50, x), bold=True, color="#00FFCE")
             self.add_widget(self.word)
+            self.word_ang = TextInput(text="Przetłumacz!",pos=(250, y), background_color='#000000', foreground_color='#00FFCE')
+            self.add_widget(self.word_ang)
             x = x - 20
-            d +=1
-        for i in tab_ang:
-            self.word = TextInput(text=str(f)+"."+i,pos=(250, y), background_color='#000000', foreground_color='#00FFCE')
-            self.add_widget(self.word)
             y = y - 20
-            f += 1
-    def spr(self, tab_ang, x):
-        if x.text == tab_ang[0]: print(True)
-        else: return print('vbretv')
+            i+=3
+            c +=1
+    def nxt(self,tab):
+        if self.word_ang.text:
+            pass
     def slownik_dodaj(self,ver):
         a = self.textinput_ang.text
         b = self.textinput_pl.text
-        print(a, " ", b)
-
+        mycursor_d = mydb.cursor()
+        mycursor_d.execute("INSERT INTO `słowa` (`Id`, `polski`, `angielski`) VALUES (NULL, '" + a + "', '" + b + "');")
+        myresult = mycursor_d.fetchall()
+        for x in myresult:
+            for i in x:
+                tab.append(i)
+        mydb.close()
 class MyWords(App):
 
     def build(self):
