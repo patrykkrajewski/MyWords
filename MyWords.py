@@ -11,24 +11,25 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 import mysql.connector
 
-mydb = mysql.connector.connect(
-  host="127.0.0.1",
-  user="root",
-  password="",
-  database="próbna"
-)
-tab = []
-mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM `słowa`")
-myresult = mycursor.fetchall()
-for x in myresult:
-  for i in x:
-    tab.append(i)
-mydb.close()
+
 
 class Aplication(Widget):
     def __init__(self, **kwargs):
         super(Aplication, self).__init__(**kwargs)
+        mydb = mysql.connector.connect(
+            host="127.0.0.1",
+            user="root",
+            password="",
+            database="mywords"
+        )
+        self.tab = []
+        mycursor = mydb.cursor()
+        mycursor.execute("SELECT * FROM `slowa`")
+        myresult = mycursor.fetchall()
+        for x in myresult:
+            for i in x:
+                self.tab.append(i)
+        mydb.close()
 #------------------------------Zdjęcie
         self.img = Image(source="img/logo.jpg", pos=(-40, 180), size=(500, 500))
         self.add_widget(self.img)
@@ -114,28 +115,29 @@ class Aplication(Widget):
         self.footer = Label(text="MyWords 2022", pos=(150, 0), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
     def nauka(self, instrukcja):
+        self.x = 420
+        self.y = 385
+        self.i = 1
         self.clear_widgets()
         # -----------------------------Tytuł
 
         self.kol = Label(text="Nauka:", pos=(150, 500), color='#00FFCE', font_size=40)
         self.add_widget(self.kol)
 # -----------------------------Program
-        self.inside = GridLayout(cols= 2, pos=(70, 350),size=(300,300))
+        self.inside = GridLayout(cols= 1, pos=(70, 400),size=(200,200))
         self.napis_jeden = Label(text="Przetłumacz słowo: ", bold=True, color="#BA0F2F", font_size= 24)
         self.inside.add_widget(self.napis_jeden)
-        self.napis_dwa = Label(text="temp", bold=True, color="#00FFCE")
-        self.inside.add_widget(self.napis_dwa)
+
         self.add_widget(self.inside)
 
-        self.wyp_dwa(tab)
 
         self.footer = Label(text="", pos=(150, 400), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
 
-        self.button = Button(pos=(77, 190), size=(250, 50), text="Sprawdz!",on_press=self.nxt, bold=True, background_color='#BA0F2F', background_normal="", color='#000000')
+        self.button = Button(pos=(77, 130), size=(250, 50), text="Następne pytanie!",on_press=self.nxt, bold=True, background_color='#BA0F2F', background_normal="", color='#000000')
         self.add_widget(self.button)
 # ---------------------Wynik
-        self.button = Button(pos=(77, 130), size=(250, 50), text="Wynik!", bold=True,background_color='#BA0F2F', background_normal="", color='#000000')
+        self.button = Button(pos=(77, 190), size=(250, 50), text="Sprawdz!",on_press=self.spr, bold=True,background_color='#BA0F2F', background_normal="", color='#000000')
         self.add_widget(self.button)
 
 # -----------------------------Footer
@@ -145,12 +147,27 @@ class Aplication(Widget):
 
         self.footer = Label(text="MyWords 2022", pos=(150, 0), bold=True, color="#00FFCE")
         self.add_widget(self.footer)
-    def spr(self,tab_ang):
-        tab_ang = ['dog', 'cat','tyb']
-        c = 0
-        tab_pom = []
-        for i in tab_ang:
-            tab_pom.append(i)
+
+    def nxt(self, h5y):
+
+        if self.i < len(self.tab):
+            self.word = Label(text=self.tab[self.i], pos=(50, self.x), bold=True, color="#00FFCE")
+            self.add_widget(self.word)
+            self.word_ang = TextInput(text="Przetłumacz!", pos=(250, self.y), background_color='#000000',
+                                      foreground_color='#00FFCE')
+            self.add_widget(self.word_ang)
+            self.x = self.x - 20
+            self.y = self.y - 20
+            self.i += 3
+
+    def spr(self,y5b):
+        print(self.tab)
+
+
+        if self.tab[self.i -2] == self.word_ang.text:
+            print("Dobra odp!")
+        else:
+            print("zla odpowiedz, poprawna to: " + self.tab[self.i -2])
     def slownik(self, tab_pl):
         self.clear_widgets()
 
@@ -162,7 +179,7 @@ class Aplication(Widget):
         self.word = Label(text="Angielski", pos=(250, 460),font_size=18, bold=True, color="#F50B00")
         self.add_widget(self.word)
 
-        self.wyp(tab)
+        self.wyp(self.tab)
 
         self.inside = GridLayout(cols=3, pos=(25, 140), size=(350, 50))
         self.textinput_pl = TextInput(text="PL", font_size=16, background_color='#000000', foreground_color='#00FFCE',halign='center', multiline=False, padding_y=(10, 10), size_hint=(0.5, 0.85))
@@ -206,19 +223,10 @@ class Aplication(Widget):
             y = y - 20
             i+=3
             c +=1
-    def nxt(self,tab):
-        if self.word_ang.text:
-            pass
     def slownik_dodaj(self,ver):
         a = self.textinput_ang.text
         b = self.textinput_pl.text
-        mycursor_d = mydb.cursor()
-        mycursor_d.execute("INSERT INTO `słowa` (`Id`, `polski`, `angielski`) VALUES (NULL, '" + a + "', '" + b + "');")
-        myresult = mycursor_d.fetchall()
-        for x in myresult:
-            for i in x:
-                tab.append(i)
-        mydb.close()
+
 class MyWords(App):
 
     def build(self):
