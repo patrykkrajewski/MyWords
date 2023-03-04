@@ -1,6 +1,8 @@
 import keyboard as keyboard
 from kivy import Config
 from kivy.app import App
+from kivy.uix.progressbar import ProgressBar
+
 Config.read('Config.ini')
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
@@ -22,6 +24,8 @@ class Aplication(Widget):
             password="",
             database="mywords"
         )
+        self.dob = 0
+        self.zle = 0
         self.tab = []
         self.tab_zle = []
         self.tab_dobrze = []
@@ -190,16 +194,39 @@ class Aplication(Widget):
         self.add_widget(self.footer)
 
     def spr(self,y5b):
-        if self.tab[self.i -2] == self.word_ang.text:
-            self.kol = Label(text="Dobra odpowiedz!", pos=(150, 320), color='#BA0F2F', font_size=20)
-            self.add_widget(self.kol)
-            self.tab_dobrze.append(self.tab[self.i -4])
-            self.tab_dobrze.append(self.tab[self.i -3])
-            self.tab_dobrze.append(self.tab[self.i -2])
+        if self.i <= len(self.tab):
+            if self.tab[self.i -2] == self.word_ang.text:
+                self.kol = Label(text="Dobra odpowiedz!", pos=(150, 320), color='#BA0F2F', font_size=20)
+                self.add_widget(self.kol)
+                self.dob += 1
+            else:
+                self.kol = Label(text="Źle poprawna odpowiedz to: " + self.tab[self.i -2], pos=(150, 320), color='#BA0F2F', font_size=20)
+                self.add_widget(self.kol)
+                self.tab_zle.append(self.tab[self.i - 4])
+                self.tab_zle.append(self.tab[self.i - 3])
+                self.tab_zle.append(self.tab[self.i - 2])
+                self.zle += 1
         else:
-            self.kol = Label(text="Źle poprawna odpowiedz to: " + self.tab[self.i -2], pos=(150, 320), color='#BA0F2F', font_size=20)
-            self.add_widget(self.kol)
+            self.koniec_nauka()
         self.remove_widget(self.button_spr)
+    def koniec_nauka(self):
+        self.clear_widgets()
+        self.img = Image(source="img/logo.jpg", pos=(-40, 180), size=(500, 500))
+        self.add_widget(self.img)
+
+        self.zal = Label(text="Koniec Kolekcji!", pos=(150, 300), color="#F44424",font_size=18)
+        self.add_widget(self.zal)
+        self.zal = Label(text="Twój wynik to: "+ str(self.dob)+" / "+str(self.dob+self.zle), pos=(150, 270),font_size=18, color="#F44424")
+        self.add_widget(self.zal)
+        progress_bar = ProgressBar(pos=(105,190),max=self.dob + self.zle, value=self.dob,size=(200,200))
+        self.add_widget(progress_bar)
+
+        self.button = Button(pos=(77, 70), size=(250, 50), text="Cofnij!", on_press=self.logowanie, bold=True,background_color='#BA0F2F', background_normal="", color='#000000')
+        self.add_widget(self.button)
+
+        self.footer = Label(text="MyWords 2022", pos=(150, 0), bold=True, color="#00FFCE")
+        self.add_widget(self.footer)
+
     def slownik(self, tab_pl):
         self.clear_widgets()
 
