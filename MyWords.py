@@ -74,6 +74,8 @@ class Aplication(Widget):
 # ------------------------------Footer
         self.img = Image(source="img/footer.png", pos=(-25, -200), size=(450, 450))
         self.add_widget(self.img)
+        self.zal = Label(text="MyWords.pl 2023", pos=(150, -20), font_size=15, bold=True)
+        self.add_widget(self.zal)
     def logowanie(self, app):
         haslo = self.user_has.text
         login = self.user_log.text
@@ -101,7 +103,7 @@ class Aplication(Widget):
         self.clear_widgets()
         self.szablon(self)
         # ---------------------Nazwa
-        self.kol = Label(text="Kolekcje 1", pos=(150, 360), color='#FFFFFF', font_size=40)
+        self.kol = Label(text="Moje słowa 1", pos=(150, 360), color='#FFFFFF', font_size=40)
         self.add_widget(self.kol)
         # ---------------------Słownik
         self.button = Button(pos=(77, 350), size=(250, 30), text="Słownik:",on_press=self.slownik, bold=True, background_color='#1A4667',

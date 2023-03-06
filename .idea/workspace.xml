@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bebef8c-da5d-468d-9106-9ebe0288f938" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWords.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyWords.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/logo.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,13 +109,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677948199222</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Nowy wygląd">
+      <created>1678063703972</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1678063703972</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Pom_2" />
     <MESSAGE value="Poprawienie słownika" />
     <MESSAGE value="Ekran końcowy kolekcji" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ekran końcowy kolekcji" />
+    <MESSAGE value="Nowy wygląd" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nowy wygląd" />
   </component>
 </project>
