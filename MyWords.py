@@ -179,7 +179,7 @@ class Aplication(Widget):
         self.add_widget(self.button)
     def sprawdz(self,app):
         if len(self.tab_zle) + len(self.tab_dobrze) != len(self.tab):
-            self.button_spr = Button(pos=(77, 150), size=(250, 30), text="Sprawdz!",on_press=self.spr,  bold=True, background_color='#BA0F2F', color='#FFFFFF')
+            self.button_spr = Button(pos=(77, 110), size=(250, 30), text="Sprawdz!",on_press=self.spr,  bold=True, background_color='#BA0F2F', color='#FFFFFF')
             self.add_widget(self.button_spr)
         else:
             self.koniec_nauka()
@@ -197,6 +197,7 @@ class Aplication(Widget):
             self.x += 3
             self.button = Button(pos=(77, 110), size=(250, 30), text="Następne pytanie!",on_press=self.nxt ,on_release=self.sprawdz, bold=True, background_color='#BA0F2F', color='#FFFFFF')
             self.add_widget(self.button)
+            self.remove_widget(self.button)
             self.cofnij(self)
     def spr(self,app):
 
@@ -215,7 +216,9 @@ class Aplication(Widget):
                 self.tab_zle.append(self.tab[self.i - 3])
                 self.tab_zle.append(self.tab[self.i - 2])
                 self.zle +=1
-
+        self.button = Button(pos=(77, 110), size=(250, 30), text="Następne pytanie!", on_press=self.nxt,
+                             on_release=self.sprawdz, bold=True, background_color='#337202', color='#FFFFFF')
+        self.add_widget(self.button)
         self.remove_widget(self.button_spr)
         self.cofnij(self)
 
@@ -270,6 +273,7 @@ class Aplication(Widget):
 
         self.cofnij(self)
     def usun_ele(self,app):
+        self.indexy(self)
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -282,7 +286,7 @@ class Aplication(Widget):
 
         mycursor.execute(sql, (val,))
         mydb.commit()
-        self.indexy(self)
+
 
     def indexy(self, app):
         mydb = mysql.connector.connect(
@@ -301,6 +305,7 @@ class Aplication(Widget):
         mydb.close()
 
     def slownik_dodaj(self,app):
+        self.indexy(self)
         a = self.textinput_ang.text
         b = self.textinput_pl.text
         mydb = mysql.connector.connect(
@@ -314,6 +319,7 @@ class Aplication(Widget):
         val = (str(b), str(a))
         mycursor.execute(sql, val)
         mydb.commit()
+
 class MyWords(App):
     def build(self):
         return Aplication()

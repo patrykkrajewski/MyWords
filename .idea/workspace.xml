@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bebef8c-da5d-468d-9106-9ebe0288f938" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MyWords.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MyWords.iml" afterDir="false" />
+    <list default="true" id="1bebef8c-da5d-468d-9106-9ebe0288f938" name="Changes" comment="Zrobiony modół nauki i słownika z opcja dodawania i usuwania">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWords.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyWords.py" afterDir="false" />
     </list>
@@ -122,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678063703972</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Zrobiony modół nauki i słownika z opcja dodawania i usuwania">
+      <created>1680127002239</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680127002239</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -130,6 +135,7 @@
     <MESSAGE value="Poprawienie słownika" />
     <MESSAGE value="Ekran końcowy kolekcji" />
     <MESSAGE value="Nowy wygląd" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nowy wygląd" />
+    <MESSAGE value="Zrobiony modół nauki i słownika z opcja dodawania i usuwania" />
+    <option name="LAST_COMMIT_MESSAGE" value="Zrobiony modół nauki i słownika z opcja dodawania i usuwania" />
   </component>
 </project>
