@@ -13,46 +13,9 @@ from kivy.uix.label import Label
 import mysql.connector
 
 
-
 class Aplication(Widget):
-    def koniec_nauka(self):
-        self.clear_widgets()
-        self.szablon(self)
-        self.zal = Label(text="Koniec Kolekcji!", pos=(150, 300), color="#F44424",font_size=18)
-        self.add_widget(self.zal)
-        self.zal = Label(text="Twój wynik to: "+ str(self.dob) +" / "+str(self.dob + self.zle), pos=(150, 270),font_size=18, color="#43CC37")
-        self.add_widget(self.zal)
-        progress_bar = ProgressBar(pos=(105,190),max=round(len(self.tab)/3), value=self.dob,size=(200,200))
-        self.add_widget(progress_bar)
-        self.cofnij(self)
-        self.button = Button(pos=(77, 110), size=(250, 30), text="Pokaż błędy!", on_press=self.zle_wpisane, bold=True,
-                             background_color='#FF0000', color='#FFFFFF')
-        self.add_widget(self.button)
-        self.dob = 0
-        self.zle = 0
 
-    def zle_wpisane(self,app):
-        self.clear_widgets()
-        self.szablon(self)
-
-        self.word = Label(text="Polski", pos=(50, 380), font_size=18, bold=True, color="#F50B00")
-        self.add_widget(self.word)
-        self.word = Label(text="Angielski", pos=(250, 380), font_size=18, bold=True, color="#F50B00")
-        self.add_widget(self.word)
-
-        i = 1
-        x = 360
-        y = 370
-        while i <= len(self.tab_zle):
-            self.ins = Label(text=self.tab_zle[i], pos=(50, x), color="#00FFCE")
-            self.add_widget(self.ins)
-            self.ins_2 = Label(text=self.tab_zle[i + 1], pos=(250, x), color="#00FFCE")
-            self.add_widget(self.ins_2)
-            i += 3
-            x -= 20
-        self.tab_zle = []
-        self.cofnij(self)
-
+#Aplikacja wszystko
     def __init__(self, **kwargs):
         super(Aplication, self).__init__(**kwargs)
 
@@ -76,67 +39,72 @@ class Aplication(Widget):
         mydb.close()
 
         self.szablon(self)
-# ------------------------------Logowanie
+        self.ekran_start(self)
+    def ekran_start(self,app):
         self.img = Image(source="img/kwadrat.png", pos=(28, 80), size=(350, 350), opacity=0.5)
         self.add_widget(self.img)
         self.pop = Label(text="Logowanie...", pos=(150, 310), font_size=30, bold=True)
         self.add_widget(self.pop)
         self.zal = Label(text="Login", pos=(150, 260), font_size=15, bold=True)
         self.add_widget(self.zal)
-        self.user_log = TextInput(pos=(85, 254), size=(236, 42), font_size=18, multiline=False,background_color='#182A38', foreground_color='#FFFFFF', halign='center',padding_y=(10, 10))
+        self.user_log = TextInput(pos=(85, 254), size=(236, 42), font_size=18, multiline=False, background_color='#182A38',
+                                  foreground_color='#FFFFFF', halign='center', padding_y=(10, 10))
         self.add_widget(self.user_log)
-        self.zal = Label(text="Hasło", pos=(150, 187), font_size=15, bold=True,valign='middle',halign='center')
+        self.zal = Label(text="Hasło", pos=(150, 187), font_size=15, bold=True, valign='middle', halign='center')
         self.add_widget(self.zal)
-        self.user_has = TextInput(pos=(85, 184), size=(236, 42), font_size=18, multiline=False,background_color='#182A38', foreground_color='#FFFFFF', halign='center',padding_y=(10, 10))
+        self.user_has = TextInput(pos=(85, 184), size=(236, 42), font_size=18, multiline=False, background_color='#182A38',
+                                  foreground_color='#FFFFFF', halign='center', padding_y=(10, 10))
         self.add_widget(self.user_has)
         self.img = Image(source="img/prz.png", pos=(-30, -25), size=(350, 350))
         self.add_widget(self.img)
-        self.button_zaloguj = Button(pos=(85, 130),opacity=0, size=(113, 37), bold=True, on_press=self.logowanie,background_color='#00FFCE', background_normal="", color='#000000')
+        self.button_zaloguj = Button(pos=(85, 130), opacity=0, size=(113, 37), bold=True, on_press=self.logowanie,
+                                     background_color='#00FFCE', background_normal="", color='#000000')
         self.add_widget(self.button_zaloguj)
         self.zal = Label(text="Zaloguj się!", pos=(95, 100), font_size=13, bold=True)
         self.add_widget(self.zal)
         self.img = Image(source="img/prz.png", pos=(90, -25), size=(350, 350))
         self.add_widget(self.img)
-        self.button_nowe = Button(pos=(210, 130),opacity=0, size=(113, 37),bold=True,background_color='#00FFCE', background_normal="", color='#000000')
+        self.button_nowe = Button(pos=(210, 130), opacity=0, size=(113, 37), bold=True, background_color='#00FFCE',
+                                  background_normal="", color='#000000')
         self.add_widget(self.button_nowe)
         self.zal = Label(text="Stwórz konto!", pos=(215, 100), font_size=13, bold=True)
         self.add_widget(self.zal)
     def szablon(self,app):
-#------------------------------Zdjęcie
-        self.img = Image(source="img/planeta.jpg", pos=(28, 340), size=(350, 350))
+        self.img = Image(source="img/planeta.jpg", pos=(28, 340), size=(350, 350)) #logo aplikacji
         self.add_widget(self.img)
         self.zal = Label(text="Nauka słówek", pos=(150, 500), font_size=24)
         self.add_widget(self.zal)
         self.zal = Label(text="MyWords", pos=(150, 470),font_size=48, bold=True)
         self.add_widget(self.zal)
-# ------------------------------Footer
         self.img = Image(source="img/footer.png", pos=(-25, -200), size=(450, 450))
         self.add_widget(self.img)
         self.zal = Label(text="MyWords.pl 2023", pos=(150, -20), font_size=15, bold=True)
         self.add_widget(self.zal)
+    def button_cofnij(self, app):
+        self.button = Button(pos=(77, 70), size=(250, 30), text="Cofnij!", on_press=self.logowanie, bold=True,
+                             background_color='#FF0000', color='#FFFFFF')
+        self.add_widget(self.button)
     def logowanie(self, app):
         haslo = self.user_has.text
         login = self.user_log.text
         if "" == login and "" == haslo:
             self.clear_widgets()
             self.szablon(self)
-# ------------------------------Tytuł
-            self.kol = Label(text="Kolekcje", pos=(150, 360), color='#FFFFFF', font_size=40)
+            self.kol = Label(text="Kolekcje", pos=(150, 360), color='#FFFFFF', font_size=40) #tytuł
             self.add_widget(self.kol)
-# ------------------------------Wypisanie kolekcji
-            self.button = Button(pos=(77, 350), size=(250, 30), text="Moje słowka 1", bold=True, on_press=self.kolekcja_jeden, background_color='#51BBFF',color='#FFFFFF')
+            self.button = Button(pos=(77, 350), size=(250, 30), text="Kolekcja", bold=True,
+                                 on_press=self.twoja_kolekcja, background_color='#51BBFF', color='#FFFFFF') #Kolekcja1
             self.add_widget(self.button)
-            #self.button = Button(pos=(77, 390), size=(250, 50), text="Moje słowka 2", bold=True,on_press=self.kolekcja_dwa, background_color='#00FFCE', background_normal="", color='#000000')
-            #self.add_widget(self.button)
-
-            #self.button = Button(pos=(77, 70), size=(250, 50), text="Dodaj Kolekcje", bold=True, background_color='#BA0F2F', background_normal="", color='#000000')
-            #self.add_widget(self.button)
+            self.button = Button(pos=(77, 310), size=(250, 30), text="Twoja kolekcja", bold=True,
+                                 on_press=self.kolekcja_jeden, background_color='#51BBFF', color='#FFFFFF') #Kolekcja2
+            self.add_widget(self.button)
 
         else:
             sss = "Zły login lub hasło"
             self.pop.text = "Niepoprawne logowanie!"
-            self.pop.font_size=23
-            self.pop.color='#FF0000'
+            self.pop.font_size = 23
+            self.pop.color = '#FF0000'
+#Kolekcja1
     def kolekcja_jeden(self, app):
         self.clear_widgets()
         self.szablon(self)
@@ -152,7 +120,62 @@ class Aplication(Widget):
                             background_color='#51BBFF', color='#FFFFFF')
         self.add_widget(self.button)
         # ---------------------Cofnij
-        self.cofnij(self)
+        self.button_cofnij(self)
+#Twoja kolekcja
+
+    def koniec_nauka(self):
+        self.clear_widgets()
+        self.szablon(self)
+        self.zal = Label(text="Koniec Kolekcji!", pos=(150, 300), color="#F44424",font_size=18)
+        self.add_widget(self.zal)
+        self.zal = Label(text="Twój wynik to: "+ str(self.dob) +" / "+str(self.dob + self.zle), pos=(150, 270),font_size=18, color="#43CC37")
+        self.add_widget(self.zal)
+        progress_bar = ProgressBar(pos=(105,190),max=round(len(self.tab)/3), value=self.dob,size=(200,200))
+        self.add_widget(progress_bar)
+        self.button_cofnij(self)
+        self.button = Button(pos=(77, 110), size=(250, 30), text="Pokaż błędy!", on_press=self.zle_wpisane, bold=True,
+                             background_color='#FF0000', color='#FFFFFF')
+        self.add_widget(self.button)
+        self.dob = 0
+        self.zle = 0
+    def zle_wpisane(self,app):
+        self.clear_widgets()
+        self.szablon(self)
+
+        self.word = Label(text="Polski", pos=(50, 380), font_size=18, bold=True, color="#F50B00")
+        self.add_widget(self.word)
+        self.word = Label(text="Angielski", pos=(250, 380), font_size=18, bold=True, color="#F50B00")
+        self.add_widget(self.word)
+
+        i = 1
+        x = 360
+        y = 370
+        while i <= len(self.tab_zle):
+            self.ins = Label(text=self.tab_zle[i], pos=(50, x), color="#00FFCE")
+            self.add_widget(self.ins)
+            self.ins_2 = Label(text=self.tab_zle[i + 1], pos=(250, x), color="#00FFCE")
+            self.add_widget(self.ins_2)
+            i += 3
+            x -= 20
+        self.tab_zle = []
+        self.button_cofnij(self)
+    def twoja_kolekcja(self, app):
+        self.clear_widgets()
+        self.szablon(self)
+        # ---------------------Nazwa
+        self.kol = Label(text="Moje słowa 1", pos=(150, 360), color='#FFFFFF', font_size=40)
+        self.add_widget(self.kol)
+        # ---------------------Słownik
+        self.button = Button(pos=(77, 350), size=(250, 30), text="Słownik:",on_press=self.slownik, bold=True, background_color='#51BBFF',
+                              color='#FFFFFF')
+        self.add_widget(self.button)
+        # ---------------------Tryb nauki
+        self.button = Button(pos=(77, 310), size=(250, 30), text="Trub Nauki!",on_press=self.nauka, bold=True,
+                            background_color='#51BBFF', color='#FFFFFF')
+        self.add_widget(self.button)
+        # ---------------------Cofnij
+        self.button_cofnij(self)
+
     def nauka(self, app):
         self.i = 1
         self.x = 0
@@ -172,11 +195,7 @@ class Aplication(Widget):
         self.button = Button(pos=(77, 110), size=(250, 30), text="Następne pytanie!",on_press=self.nxt ,on_release=self.sprawdz, bold=True, background_color='#BA0F2F', color='#FFFFFF')
         self.add_widget(self.button)
 
-        self.cofnij(self)
-    def cofnij(self,app):
-        self.button = Button(pos=(77, 70), size=(250, 30), text="Cofnij!", on_press=self.logowanie, bold=True,
-                             background_color='#FF0000', color='#FFFFFF')
-        self.add_widget(self.button)
+        self.button_cofnij(self)
     def sprawdz(self,app):
         if len(self.tab_zle) + len(self.tab_dobrze) != len(self.tab):
             self.button_spr = Button(pos=(77, 110), size=(250, 30), text="Sprawdz!",on_press=self.spr,  bold=True, background_color='#BA0F2F', color='#FFFFFF')
@@ -198,7 +217,7 @@ class Aplication(Widget):
             self.button = Button(pos=(77, 110), size=(250, 30), text="Następne pytanie!",on_press=self.nxt ,on_release=self.sprawdz, bold=True, background_color='#BA0F2F', color='#FFFFFF')
             self.add_widget(self.button)
             self.remove_widget(self.button)
-            self.cofnij(self)
+            self.button_cofnij(self)
     def spr(self,app):
 
         if self.i <= len(self.tab)+1:
@@ -220,8 +239,7 @@ class Aplication(Widget):
                              on_release=self.sprawdz, bold=True, background_color='#337202', color='#FFFFFF')
         self.add_widget(self.button)
         self.remove_widget(self.button_spr)
-        self.cofnij(self)
-
+        self.button_cofnij(self)
     def slownik(self, app):
         self.clear_widgets()
         self.szablon(self)
@@ -271,7 +289,7 @@ class Aplication(Widget):
                              on_press=self.slownik_dodaj)
         self.add_widget(self.button)
 
-        self.cofnij(self)
+        self.button_cofnij(self)
     def usun_ele(self,app):
         self.indexy(self)
         mydb = mysql.connector.connect(
@@ -286,8 +304,6 @@ class Aplication(Widget):
 
         mycursor.execute(sql, (val,))
         mydb.commit()
-
-
     def indexy(self, app):
         mydb = mysql.connector.connect(
             host="127.0.0.1",
@@ -303,7 +319,6 @@ class Aplication(Widget):
             mycursor.execute(sql, (i + 1, x[0]))
         mydb.commit()
         mydb.close()
-
     def slownik_dodaj(self,app):
         self.indexy(self)
         a = self.textinput_ang.text
@@ -319,7 +334,7 @@ class Aplication(Widget):
         val = (str(b), str(a))
         mycursor.execute(sql, val)
         mydb.commit()
-
+#----------------------------------------------------------------------------------------------------
 class MyWords(App):
     def build(self):
         return Aplication()
