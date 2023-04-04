@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bebef8c-da5d-468d-9106-9ebe0288f938" name="Changes" comment="Zrobiony modół nauki i słownika z opcja dodawania i usuwania">
+    <list default="true" id="1bebef8c-da5d-468d-9106-9ebe0288f938" name="Changes" comment="Zmiana przed próba z chackBoxami do usuwania wielu elementów">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyWords.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyWords.py" afterDir="false" />
     </list>
@@ -127,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680127002239</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Zmiana przed próba z chackBoxami do usuwania wielu elementów">
+      <created>1680128300182</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680128300182</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -136,6 +143,7 @@
     <MESSAGE value="Ekran końcowy kolekcji" />
     <MESSAGE value="Nowy wygląd" />
     <MESSAGE value="Zrobiony modół nauki i słownika z opcja dodawania i usuwania" />
-    <option name="LAST_COMMIT_MESSAGE" value="Zrobiony modół nauki i słownika z opcja dodawania i usuwania" />
+    <MESSAGE value="Zmiana przed próba z chackBoxami do usuwania wielu elementów" />
+    <option name="LAST_COMMIT_MESSAGE" value="Zmiana przed próba z chackBoxami do usuwania wielu elementów" />
   </component>
 </project>
