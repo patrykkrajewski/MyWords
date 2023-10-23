@@ -37,34 +37,61 @@ class Aplication(Widget):
                 self.tab.append(i)
         mydb.close()
 
-        self.szablon(self)
         self.ekran_start(self)
+        self.szablon(self)
+
     def ekran_start(self,app):
-        #self.img = Image(source="img/kwadrat.png", pos=(28, 80), size=(350, 350), opacity=0.5)
-        #self.add_widget(self.img)
-        #self.pop = Label(text="Logowanie...", pos=(150, 310), font_size=30, bold=True)
-        #self.add_widget(self.pop)
-        #self.zal = Label(text="Login", pos=(150, 260), font_size=15, bold=True)
-        #self.add_widget(self.zal)
-        #self.user_log = TextInput(pos=(85, 254), size=(236, 42), font_size=18, multiline=False, background_color='#182A38',foreground_color='#FFFFFF', halign='center', padding_y=(10, 10))
-        #self.add_widget(self.user_log)
-        #self.zal = Label(text="Hasło", pos=(150, 187), font_size=15, bold=True, valign='middle', halign='center')
-        #self.add_widget(self.zal)
-        #self.user_has = TextInput(pos=(85, 184), size=(236, 42), font_size=18, multiline=False, background_color='#182A38',foreground_color='#FFFFFF', halign='center', padding_y=(10, 10))
-        #self.add_widget(self.user_has)
-        #self.img = Image(source="img/prz.png", pos=(-30, -25), size=(350, 350))
-        #self.add_widget(self.img)
-        #self.button_zaloguj = Button(pos=(85, 130), opacity=0, size=(113, 37), bold=True, on_press=self.logowanie,background_color='#00FFCE', background_normal="", color='#000000')
-        #self.add_widget(self.button_zaloguj)
-        #self.zal = Label(text="Zaloguj się!", pos=(95, 100), font_size=13, bold=True)
-        #self.add_widget(self.zal)
-        #self.img = Image(source="img/prz.png", pos=(90, -25), size=(350, 350))
-        #self.add_widget(self.img)
-        #self.button_nowe = Button(pos=(210, 130), opacity=0, size=(113, 37), bold=True, background_color='#00FFCE',background_normal="", color='#000000')
-        #self.add_widget(self.button_nowe)
-        #self.zal = Label(text="Stwórz konto!", pos=(215, 100), font_size=13, bold=True)
-        #self.add_widget(self.zal)
+        self.img = Image(source="img/kwadrat.png", pos=(28, 80), size=(350, 350), opacity=0.5)
+        self.add_widget(self.img)
+        self.pop = Label(text="Logowanie...", pos=(150, 310), font_size=30, bold=True)
+        self.add_widget(self.pop)
+        self.zal = Label(text="Login", pos=(150, 260), font_size=15, bold=True)
+        self.add_widget(self.zal)
+        self.user_log = TextInput(pos=(85, 254), size=(236, 42), font_size=18, multiline=False, background_color='#182A38',foreground_color='#FFFFFF', halign='center', padding_y=(10, 10))
+        self.add_widget(self.user_log)
+        self.zal = Label(text="Hasło", pos=(150, 187), font_size=15, bold=True, valign='middle', halign='center')
+        self.add_widget(self.zal)
+        self.user_has = TextInput(pos=(85, 184), size=(236, 42), font_size=18, multiline=False, background_color='#182A38',foreground_color='#FFFFFF', halign='center', padding_y=(10, 10))
+        self.add_widget(self.user_has)
+        self.img = Image(source="img/prz.png", pos=(-30, -25), size=(350, 350))
+        self.add_widget(self.img)
+        self.button_zaloguj = Button(pos=(85, 130), opacity=0, size=(113, 37), bold=True, on_press=self.logowanie,background_color='#00FFCE', background_normal="", color='#000000')
+        self.add_widget(self.button_zaloguj)
+        self.zal = Label(text="Zaloguj się!", pos=(95, 100), font_size=13, bold=True)
+        self.add_widget(self.zal)
+        self.img = Image(source="img/prz.png", pos=(90, -25), size=(350, 350))
+        self.add_widget(self.img)
+        self.button_nowe = Button(pos=(210, 130),opacity=0, size=(113, 37), bold=True, background_color='#00FFCE',background_normal="", color='#000000')
+        self.add_widget(self.button_nowe)
+        self.zal = Label(text="Stwórz konto!", pos=(215, 100), font_size=13, bold=True)
+        self.add_widget(self.zal)
         self.logowanie(self)
+    def nowe_konto(self,app):
+        self.clear_widgets()
+        self.szablon(self)
+        self.img = Image(source="img/kwadrat.png", pos=(28, 80), size=(350, 350), opacity=0.5)
+        self.add_widget(self.img)
+        self.pop = Label(text="Nowe konto!", pos=(150, 310), font_size=30, bold=True, color="#F44424")
+        self.add_widget(self.pop)
+        self.zal = Label(text="Login", pos=(150, 260), font_size=15, bold=True, color="#F44424")
+        self.add_widget(self.zal)
+        self.user_log = TextInput(pos=(85, 254), size=(236, 42), font_size=18, multiline=False, background_color='#182A38',foreground_color='#FFFFFF', halign='center', padding_y=(10, 10))
+        self.add_widget(self.user_log)
+        self.zal = Label(text="Hasło", pos=(150, 187), font_size=15, bold=True, valign='middle', halign='center', color="#F44424")
+        self.add_widget(self.zal)
+        self.user_has = TextInput(pos=(85, 184), size=(236, 42), font_size=18, multiline=False, background_color='#182A38',foreground_color='#FFFFFF', halign='center', padding_y=(10, 10))
+        self.add_widget(self.user_has)
+        self.button_zaloguj = Button(pos=(85, 130), opacity=0, size=(113, 37), bold=True,background_color='#00FFCE', background_normal="", color='#000000')
+        self.add_widget(self.button_zaloguj)
+        self.img = Image(source="img/prz.png", pos=(25, -25), size=(350, 350))
+        self.add_widget(self.img)
+        self.button_nowe = Button(pos=(210, 130),opacity=0, size=(117, 37), bold=True, background_color='#00FFCE',on_press=self.nowe_konto,background_normal="", color='#000000')
+        self.add_widget(self.button_nowe)
+        self.zal = Label(text="Stwórz konto!", pos=(150, 100), font_size=13, bold=True)
+        self.add_widget(self.zal)
+
+
+
     def szablon(self,app):
         self.img = Image(source="img/planeta.jpg", pos=(28, 340), size=(350, 350)) #logo aplikacji
         self.add_widget(self.img)
@@ -82,21 +109,23 @@ class Aplication(Widget):
                              background_color='#FF0000', color='#FFFFFF')
         self.add_widget(self.button)
     def logowanie(self, app):
-    #haslo = self.user_has.text
-    #login = self.user_log.text
-    #if "" == login and "" == haslo:
-        self.clear_widgets()
-        self.szablon(self)
-        self.kol = Label(text="Kolekcje", pos=(150, 360), color='#FFFFFF', font_size=40) #tytuł
-        self.add_widget(self.kol)
-        self.button = Button(pos=(77, 350), size=(250, 30), text="Kolekcja", bold=True,
-                             on_press=self.kolekcja_jeden, background_color='#51BBFF', color='#FFFFFF') #Kolekcja1
-        self.add_widget(self.button)
-    #else:
-        #sss = "Zły login lub hasło"
-        #self.pop.text = "Niepoprawne logowanie!"
-        #self.pop.font_size = 23
-        #self.pop.color = '#FF0000'
+        haslo = self.user_has.text
+        login = self.user_log.text
+        if "admin" == login and "admin" == haslo:
+            self.clear_widgets()
+            self.szablon(self)
+            self.kol = Label(text="Kolekcje", pos=(150, 360), color='#FFFFFF', font_size=40) #tytuł
+            self.add_widget(self.kol)
+            self.button = Button(pos=(77, 350), size=(250, 30), text="Kolekcja", bold=True,
+                                 on_press=self.kolekcja_jeden, background_color='#51BBFF', color='#FFFFFF') #Kolekcja1
+            self.add_widget(self.button)
+        if "" == login and "" == haslo:
+            self.pop.text = "Zaloguj się!"
+        else:
+            sss = "Zły login lub hasło"
+            self.pop.text = "Niepoprawne logowanie!"
+            self.pop.font_size = 23
+            self.pop.color = '#FF0000'
 #Kolekcja1 ---------------------------------------------------------------------------------------------------
     def kolekcja_jeden(self, app):
         self.clear_widgets()
